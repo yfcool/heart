@@ -2,9 +2,46 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>欸嘿</title>
+<title>笑&东</title>
 </head>
 <body>
-    <h1>hello</h1>
+    <h1 id="start-time"></h1>
+    
+    <script>
+        let timef = 0;
+        let times = 0;
+        let timem = 0;
+        let zt_ks = false;
+        let fg = Array();
+
+        setInterval(() => {
+            document.getElementById("start-time").innerHTML = timeElapse();
+        }, 1000);
+        
+        function timeElapse() {
+            var a = new Date();
+            var b = new Date('2022-05-31');
+            a = a.valueOf();
+            b = b.valueOf();
+            var c = a - b;
+            c = new Date(c);
+            var result=c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
+            //天也要往前推一天，小时需要减去8，但是问题是减8后hour会出现负值，
+            if((c.getHours()-8)<0){
+                result  =  reCaclute();
+            }
+            return result;
+        }
+        function reCaclute(){
+             var a = new Date();
+             var b = new Date(2017,02, 26,12,00,00);
+             a = a.valueOf();
+             b = b.valueOf();
+             var c = a - b;
+             c = new Date(c);
+             var result=c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8+24) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
+             return result;
+        }
+    </script>
 </body>
 </html>
