@@ -6,35 +6,32 @@
 </head>
 <body>
     <h1 id="start-time"></h1>
+    <h1 id="start-day"></h1>
     
     <script>
         setInterval(() => {
             document.getElementById("start-time").innerHTML = timeElapse();
+            document.getElementById("start-day").innerHTML = timeDay();
         }, 1000);
         
         function timeElapse() {
-            var a = new Date();
-            var b = new Date('2022-05-29 23:00');
-            a = a.valueOf();
-            b = b.valueOf();
-            var c = a - b;
+            let a = new Date();
+            let b = new Date('2022-05-29 23:00');
+            let c = a.valueOf() - b.valueOf();
             c = new Date(c);
-            var result=c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
-            //天也要往前推一天，小时需要减去8，但是问题是减8后hour会出现负值，
+            let result = c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
+            // 天也要往前推一天，小时需要减去8，但是问题是减8后hour会出现负值，
             if((c.getHours()-8)<0){
-                result  =  reCaclute();
+                result = c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8+24) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
             }
             return result;
         }
-        function reCaclute(){
-             var a = new Date();
-             var b = new Date('2022-05-29 23:00');
-             a = a.valueOf();
-             b = b.valueOf();
-             var c = a - b;
-             c = new Date(c);
-             var result=c.getFullYear() - 1970 + '年' + (c.getMonth()) + '个月' + (c.getDate()-1) + '天' + (c.getHours()-8+24) + '个小时' + c.getMinutes() + '分钟' + c.getSeconds() + '秒';
-             return result;
+        function timeDay(){
+            let a = new Date();
+            let b = new Date('2022-05-29 23:00');
+            let c = a.valueOf() - b.valueOf();
+            c = c / 1000 / 24 / 60 / 60;
+            return `${Math.trunc(c)}天`;
         }
     </script>
 </body>
