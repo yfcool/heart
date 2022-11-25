@@ -31,7 +31,12 @@
             let b = new Date('2022-05-29 23:00');
             let c = a.valueOf() - b.valueOf();
             c = c / 1000 / 24 / 60 / 60;
-            return `${Math.trunc(c)}天`;
+            let day = parseInt(c); // 天
+            let h = parseInt((c-day)*24); // 时
+            let m = parseInt((c-day-h/24)*24*60); // 分
+            let s = parseInt((c-day-h/24-m/60/24)*24*60*60); // 秒
+            let str=day+"天"+h+"小时"+m+"分"+s+"秒";
+            return str;
         }
     </script>
 </body>
